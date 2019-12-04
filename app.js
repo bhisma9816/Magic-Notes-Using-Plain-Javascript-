@@ -57,14 +57,19 @@ function showNotes() {
 
 function deleteNote(index){
   let notes = localStorage.getItem('notes');
-  if (notes == null) {
+  let notesTitle = localStorage.getItem("notesTitle");
+  if (notes == null && notesTitle ==null) {
     notesObj = [];
+    notesTitle = [];
   }
   else {
     notesObj = JSON.parse(notes);
+    notesTitleObj = JSON.parse(notesTitle);
   }
   notesObj.splice(index,1);
+  notesTitleObj.splice(index,1);
   localStorage.setItem('notes',JSON.stringify(notesObj));
+  localStorage.setItem('notesTitle',JSON.stringify(notesTitleObj));
   showNotes();
 
 }
